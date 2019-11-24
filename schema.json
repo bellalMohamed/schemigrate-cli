@@ -16,5 +16,30 @@
             "username": "root",
             "password": ""
         }
-    }
+    },
+    "tables": [
+        {
+            "from": "users",
+            "to": "businesses",
+            "type": "copy",
+            "generateUuid": true,
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "remove": ["subscribed", "plan", "subscribe_ends_at"],
+            "columns": [
+                ["id", "id"],
+                ["name", "name"],
+                ["email", "email"],
+                ["password", "password"],
+                ["country", "country"],
+                ["hidden", "hidden"],
+                ["verified", "verified"],
+                ["recommended", "recommended"],
+                ["category_id", "category_id"],
+                ["active_incentive", "active_incentive"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        }
+    ]
 }

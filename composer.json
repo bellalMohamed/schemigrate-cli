@@ -18,7 +18,8 @@
     "require": {
         "php": "^7.2",
         "illuminate/database": "^6.0",
-        "laravel-zero/framework": "^6.0"
+        "laravel-zero/framework": "^6.0",
+        "ramsey/uuid": "^3.8"
     },
     "require-dev": {
         "fzaninotto/faker": "^1.4",

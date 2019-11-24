@@ -62,6 +62,16 @@ class MigrateCommand extends Command
                 return false;
             }
         });
+
+        $this->task("Migrating", function () {
+            $start = microtime(true);
+
+            $this->schema->migrate();
+
+            $time = round(microtime(true) - $start, 2);
+
+            $this->notify("Migrated Successfully", "Time: $time seconds");
+        });
     }
 
     protected function isSchemaLoaded()
