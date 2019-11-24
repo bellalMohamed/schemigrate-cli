@@ -28,9 +28,9 @@ class MigrateCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->schema = new Schema(
             $this->argument('schema')
@@ -70,16 +70,26 @@ class MigrateCommand extends Command
 
             $time = round(microtime(true) - $start, 2);
 
-            $this->notify("Migrated Successfully", "Time: $time seconds");
+            $this->notify("Migrated Successfully", "Time: {$time} seconds");
         });
     }
 
-    protected function isSchemaLoaded()
+    /**
+     * Check if schema is loaded or not
+     *
+     * @return boolean
+     */
+    protected function isSchemaLoaded(): boolean
     {
         return $this->schema->schemaLoaded();
     }
 
-    protected function printErrors()
+    /**
+     * Prints schema errors
+     *
+     * @return void
+     */
+    protected function printErrors(): void
     {
         $this->schema->errors()->map(function ($error) {
             $this->error("\n{$error}");

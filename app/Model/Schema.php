@@ -25,7 +25,7 @@ class Schema
         try {
             $this->schemaFile = File::get($schemaPath);
             $this->schemaLoaded = true;
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $this->pushToErrors("Can't find a file with the path: {$schemaPath}");
         }
     }
@@ -137,13 +137,13 @@ class Schema
     {
         try {
             DB::connection('c1')->statement('show tables');
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $this->pushToErrors("DB Connection Failed: Error in 'from' database connection");
         }
 
         try {
             DB::connection('c2')->statement('show tables');
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             $this->pushToErrors("DB Connection Failed: Error in 'to' database connection");
         }
     }
@@ -201,7 +201,7 @@ class Schema
 
         if (count($parts) > 1) {
             return property_exists($object ?: $this->schema, $parts[0])
-                ?  $this->has($parts[1], ($object ?: $this->schema)->{$parts[0]})
+                ? $this->has($parts[1], ($object ?: $this->schema)->{$parts[0]})
                 : $path;
         }
 
