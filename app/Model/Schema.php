@@ -67,16 +67,32 @@ class Schema
         $this->table = $table;
 
         $remove = isset($table->remove) ? $table->remove : [];
+        $keys = isset($table->matchKeys) ? [$table->matchKeys[0]] : [];
 
         $data = $this->normalizeDataToInsert(
             $this->loadTabelData(
-                array_merge($remove, $this->extractFromColumns($table->columns))
+                array_merge($remove, $keys, $this->extractFromColumns($table->columns))
             ),
             $table->columns,
             $remove,
         );
 
-        $this->insert($data);
+        $table->type === 'copy' ? $this->insert($data) : $this->merge($data);
+    }
+
+    protected function merge($data)
+    {
+       foreach ($data as $value) {
+            DB::connection('c2')->table($this->table->to)
+                ->where($this->table->matchKeys[1], $value[$this->table->matchKeys[0]])
+                ->update($this->except($value, $this->table->matchKeys[0]));
+       }
+    }
+
+    protected function except(array $array, $except)
+    {
+        unset($array[$except]);
+        return $array;
     }
 
     /**

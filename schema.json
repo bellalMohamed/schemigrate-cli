@@ -40,6 +40,22 @@
                 ["created_at", "created_at"],
                 ["updated_at", "updated_at"]
             ]
+        },
+        {
+            "from": "profiles",
+            "to": "businesses",
+            "type": "merge",
+            "disableForeignkeyCheck": true,
+            "matchKeys": ["user_id", "id"],
+            "columns": [
+                ["description", "description"],
+                ["photo", "photo"],
+                ["cover", "cover"],
+                ["work_days", "work_days"],
+                ["work_hours", "work_hours"],
+                ["facebookUrl", "facebook"],
+                ["instagramUrl", "instagram"]
+            ]
         }
     ]
 }
