@@ -2,6 +2,7 @@
 
 namespace App\Model;
 use File;
+use DB;
 
 class Schema
 {
@@ -24,6 +25,11 @@ class Schema
         } catch (\Exception $e) {
             $this->pushToErrors("Can't find a file with the path: {$schemaPath}");
         }
+    }
+
+    public function initDBConnections()
+    {
+        // DB::connecti
     }
 
     public function parse()
