@@ -124,7 +124,10 @@ class Schema
         if (isset($this->table->generateUuid) && $this->table->generateUuid) {
             $data = $this->generateUuid($data);
         }
-        DB::connection('c2')->table($this->table->to)->insert($data);
+
+        foreach (array_chunk($data, 1000) as $chunk) {
+            DB::connection('c2')->table($this->table->to)->insert($chunk);
+        }
     }
 
     /**
@@ -253,12 +256,12 @@ class Schema
     {
         $schemaStructure = [
             'connections' => [
-                // 'from' => [
-                //     'host', 'name', 'user', 'password'
-                // ],
-                // 'to' => [
-                //     'host', 'name', 'user', 'password'
-                // ]
+                'from' => [
+                    'host', 'username', 'password'
+                ],
+                'to' => [
+                    'host', 'username', 'password'
+                ]
             ]
         ];
         $this->handleSchemaRequirmentsChecks($schemaStructure);
@@ -344,7 +347,7 @@ class Schema
      * Returens errors array
      * @return array array of errors
      */
-    public function errors(): array
+    public function errors(): object
     {
         return $this->errors;
     }

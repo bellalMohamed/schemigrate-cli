@@ -56,6 +56,299 @@
                 ["facebookUrl", "facebook"],
                 ["instagramUrl", "instagram"]
             ]
+        },
+        {
+            "from": "admins",
+            "to": "admins",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["name", "name"],
+                ["email", "email"],
+                ["password", "password"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "analytics_questions",
+            "to": "analytics_questions",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["type", "type"],
+                ["question", "question"],
+                ["ownership", "ownership"],
+                ["approved", "approved"],
+                ["created_at", "created_at"]
+            ]
+        },
+        {
+            "from": "analytics_questions_answers",
+            "to": "analytics_questions_answers",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["member_id", "member_id"],
+                ["user_id", "business_id"],
+                ["question_id", "question_id"],
+                ["branch_id", "branch_id"],
+                ["punch_id", "punch_id"],
+                ["answer", "answer"],
+                ["created_at", "created_at"]
+            ]
+        },
+        {
+            "from": "birthday_rewards",
+            "to": "birthday_rewards",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["user_id", "business_id"],
+                ["active", "active"],
+                ["reward", "reward"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "branch_rewards",
+            "to": "branch_rewards",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["branch_id", "branch_id"],
+                ["welcome_reward", "welcome_reward"],
+                ["welcome_punch", "welcome_punch"]
+            ]
+        },
+        {
+            "from": "branches",
+            "to": "branches",
+            "generateUuid": true,
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["user_id", "business_id"],
+                ["name", "name"],
+                ["location", "location"]
+            ]
+        },
+        {
+            "from": "cards",
+            "to": "cards",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["user_id", "business_id"],
+                ["position", "position"],
+                ["rewards", "rewards"],
+                ["visits", "punches"]
+            ]
+        },
+        {
+            "from": "categories",
+            "to": "categories",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["name", "name"]
+            ]
+        },
+        {
+            "from": "delivery_punches",
+            "to": "delivery_punches",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["unique_id", "unique_id"],
+                ["receipt_value", "receipt_value"],
+                ["receipt_no", "receipt_no"],
+                ["team_id", "team_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "favourites",
+            "to": "favourites",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["member_id", "member_id"],
+                ["user_id", "business_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "feedback_compliments",
+            "to": "feedback_compliments",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["name", "name"],
+                ["category_id", "category_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "feedback_compliments_pivot",
+            "to": "feedback_compliments_pivot",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["feedback_id", "feedback_id"],
+                ["compliment_id", "compliment_id"]
+            ]
+        },
+        {
+            "from": "feedbacks",
+            "to": "feedbacks",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["details", "details"],
+                ["rate", "rate"],
+                ["user_id", "business_id"],
+                ["member_id", "member_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "feeds",
+            "to": "feeds",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["payload", "payload"],
+                ["type", "type"],
+                ["body", "body"],
+                ["feedable_type", "feedable_type"],
+                ["created_at", "created_at"],
+                ["feedable_id", "feedable_id"]
+            ]
+        },
+        {
+            "from": "group_punches",
+            "to": "group_punches",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["punch_id", "visit_id"],
+                ["unique_id", "uuid"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "happy_hours",
+            "to": "happy_hours",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["branch_id", "branch_id"],
+                ["hour", "hour"],
+                ["gender", "gender"],
+                ["age", "age"],
+                ["start_at", "start_at"],
+                ["end_at", "end_at"]
+            ]
+        },
+        {
+            "from": "incentive_transactions",
+            "to": "incentive_transactions",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["team_id", "team_id"],
+                ["incentive_name", "incentive_name"],
+                ["punch_id", "visit_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "incentive_types",
+            "to": "incentive_types",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["type", "type"],
+                ["properties", "properties"]
+            ]
+        },
+        {
+            "from": "incentives",
+            "to": "incentives",
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["user_id", "business_id"],
+                ["type_id", "type_id"],
+                ["created_at", "created_at"],
+                ["updated_at", "updated_at"]
+            ]
+        },
+        {
+            "from": "members",
+            "to": "members",
+            "generateUuid": true,
+            "shouldTruncateFirst": true,
+            "disableForeignkeyCheck": true,
+            "type": "copy",
+            "columns": [
+                ["id", "id"],
+                ["name", "name"],
+                ["phone_number", "phone_number"],
+                ["photo", "photo"],
+                ["email", "email"],
+                ["fcm_token", "fcm_token"],
+                ["profile_completed", "profile_completed"],
+                ["gender", "gender"],
+                ["date_of_birth", "date_of_birth"],
+                ["login_code", "login_code"],
+                ["updated_at", "updated_at"]
+            ]
         }
     ]
 }

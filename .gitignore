@@ -2,4 +2,5 @@
 /.idea
 /.vscode
 /.vagrant
-schema.json/database/database.sqlite
+schema.json
+/database/database.sqlite
