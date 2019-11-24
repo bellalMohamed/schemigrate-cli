@@ -77,9 +77,9 @@ class MigrateCommand extends Command
     /**
      * Check if schema is loaded or not
      *
-     * @return boolean
+     * @return bool
      */
-    protected function isSchemaLoaded(): boolean
+    protected function isSchemaLoaded(): bool
     {
         return $this->schema->schemaLoaded();
     }
