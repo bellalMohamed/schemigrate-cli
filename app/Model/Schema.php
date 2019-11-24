@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Model;
-use File;
 use DB;
+use File;
+use Config;
 
 class Schema
 {
@@ -29,7 +30,29 @@ class Schema
 
     public function initDBConnections()
     {
-        // DB::connecti
+        $this->addConnectionsToConfig();
+        $this->testConnections();
+    }
+
+    protected function addConnectionsToConfig()
+    {
+        Config::set('database.connections.c1', (array) $this->schema->connections->from);
+        Config::set('database.connections.c2', (array) $this->schema->connections->to);
+    }
+
+    protected function testConnections()
+    {
+        try {
+            DB::connection('c1')->statement('show tables');
+        } catch (\Exception $e) {
+            $this->pushToErrors("DB Connection Failed: Error in 'from' database connection");
+        }
+
+        try {
+            DB::connection('c2')->statement('show tables');
+        } catch (\Exception $e) {
+            $this->pushToErrors("DB Connection Failed: Error in 'to' database connection");
+        }
     }
 
     public function parse()
@@ -41,12 +64,12 @@ class Schema
     {
         $schemaStructure = [
             'connections' => [
-                'from' => [
-                    'host', 'name', 'user', 'password'
-                ],
-                'to' => [
-                    'host', 'name', 'user', 'password'
-                ]
+                // 'from' => [
+                //     'host', 'name', 'user', 'password'
+                // ],
+                // 'to' => [
+                //     'host', 'name', 'user', 'password'
+                // ]
             ]
         ];
         $this->handleSchemaRequirmentsChecks($schemaStructure);

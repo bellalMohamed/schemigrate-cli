@@ -34,6 +34,9 @@ return [
     */
 
     'connections' => [
+        'c1' => [],
+
+        'c2' => [],
 
         'sqlite' => [
             'driver' => 'sqlite',

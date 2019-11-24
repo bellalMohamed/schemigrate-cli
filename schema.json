@@ -1,11 +1,20 @@
 {
     "connections": {
         "from": {
-            "name": "zeal",
-            "host": "zeal"
+            "driver": "mysql",
+            "host": "127.0.0.1",
+            "port": "3306",
+            "database": "zeal",
+            "username": "root",
+            "password": ""
         },
         "to": {
-
+            "driver": "mysql",
+            "host": "127.0.0.1",
+            "port": "3306",
+            "database": "zeal-new",
+            "username": "root",
+            "password": ""
         }
-    },
+    }
 }

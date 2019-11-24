@@ -55,8 +55,12 @@ class MigrateCommand extends Command
             }
         });
 
-        $this->task("Check DB Connections", function () {
+        $this->task("Checking DB Connections", function () {
             $this->schema->initDBConnections();
+            if ($this->schema->hasErrors()) {
+                $this->printErrors();
+                return false;
+            }
         });
     }
 
