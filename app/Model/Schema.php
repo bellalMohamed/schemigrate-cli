@@ -80,15 +80,25 @@ class Schema
         $table->type === 'copy' ? $this->insert($data) : $this->merge($data);
     }
 
-    protected function merge($data)
+    /**
+     * Merge Data from one table to another table
+     * @param  array $data
+     */
+    protected function merge(array $data)
     {
        foreach ($data as $value) {
             DB::connection('c2')->table($this->table->to)
                 ->where($this->table->matchKeys[1], $value[$this->table->matchKeys[0]])
                 ->update($this->except($value, $this->table->matchKeys[0]));
-       }
+        }
     }
 
+    /**
+     * Remove element from array
+     * @param  array  $array
+     * @param  string $except
+     * @return array   new array
+     */
     protected function except(array $array, $except)
     {
         unset($array[$except]);
